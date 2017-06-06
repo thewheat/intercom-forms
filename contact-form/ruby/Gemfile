@@ -1,0 +1,6 @@
+source "https://rubygems.org"
+ruby "2.3.1"
+gem 'dotenv'
+gem 'sinatra', '1.4.7'
+gem 'intercom'
+gem 'rerun', '0.11.0'
