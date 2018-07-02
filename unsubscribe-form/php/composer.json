@@ -1,0 +1,5 @@
+{
+    "require": {
+        "intercom/intercom-php": "^3.0"
+    }
+}

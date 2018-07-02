@@ -1,5 +1,7 @@
 # Sample contact form code in PHP
 
+![](screenshot.png)
+
 ## General guidelines when using the Intercom API with PHP
 - https://github.com/thewheat/intercom-testing-api/tree/master/php
 

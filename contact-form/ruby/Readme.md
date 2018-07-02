@@ -1,5 +1,7 @@
 # Sample contact form code in Ruby
 
+![](screenshot.png)
+
 ## General guidelines when using the Intercom API with Ruby
 - https://github.com/thewheat/intercom-testing-api/tree/master/ruby
 

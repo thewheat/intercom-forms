@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unsubscribe page</title>
+</head>
+<body>
+	<h1>Unsubscribe page using Javascript</h1>
+
+	<h3>Select which newsletters you would like to receive</h3>
+	<div><label><input type="checkbox" id="newsletter1">Newsletter one</label></div>
+	<div><label><input type="checkbox" id="newsletter2">Newsletter two</label></div>
+	<input id="unsubscribe" type="submit" value="Unsubscribe"></button>
+
+	<br>
+	<h3>Unsubscribe from all newsletter/bulk emails</h3>
+	<input id="unsubscribe_all" type="submit" value="Unsubscribe from all"></button>
+
+	<br>
+	<h3>Opt into receiving emails</h3>
+	<div><label><input type="checkbox" id="optin">Opt me into receiving email messages</label></div>
+	<input id="resubscribe" type="submit" value="Resubscribe to receiving"></button>
+
+	<script type="text/javascript">
+		var APP_ID = 'Your Intercom App ID';
+
+		// if you use user_id (recommended)
+		var USER_ID = 'USER_ID_OF_CURRENTLY_LOGGED_IN_USER';
+		
+		window.intercomSettings= {app_id: APP_ID, user_id: USER_ID};
+
+		// if you only use email
+		// var EMAIL = 'EMAIL_OF_CURRENTLY_LOGGED_IN_USER';
+		// window.intercomSettings= {app_id: APP_ID, email: EMAIL};
+
+
+		document.getElementById("unsubscribe").addEventListener("click", function(e){
+			var subscription_data = {
+				"newsletter1": document.getElementById("newsletter1").checked,
+				"newsletter2": document.getElementById("newsletter2").checked
+			};
+			Intercom("update", subscription_data);
+			setTimeout(function(){alert("Subscription updated");}, 100);
+		});
+		document.getElementById("unsubscribe_all").addEventListener("click", function(e){
+			if(confirm("Are you sure you want to unsubcribe from all emails?")){
+				Intercom("update", {"unsubscribed_from_emails": true});
+				setTimeout(function(){alert("You have been unsubscribed");}, 100);
+			}
+		});
+		document.getElementById("resubscribe").addEventListener("click", function(e){
+			if(document.getElementById("optin").checked){
+				Intercom("update", {"unsubscribed_from_emails": false});
+				setTimeout(function(){alert("You have been resubscribed");}, 100);
+			}
+			else{
+				alert("Cannot resubscribe you unless you opt-in");
+			}
+		});
+
+
+	(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;
+	s.src='https://widget.intercom.io/widget/'+APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
+	</script>
+</body>
+</html>
